@@ -102,6 +102,9 @@ function App() {
 
             <div className="runtime-card">
               <div className="runtime-heading">BROWSER RUNTIME READY</div>
+              <div className="runtime-test-note">
+                Vice City has a working public WebAssembly browser client. Use the test button to launch it in a top-level tab; its Service Worker/OPFS setup is designed to run from its own origin.
+              </div>
               <div className="runtime-grid">
                 <span>WebAssembly <b>{runtime?.wasm ? "YES" : "NO"}</b></span>
                 <span>WebGL 2 <b>{runtime?.webgl2 ? "YES" : "NO"}</b></span>
@@ -115,9 +118,19 @@ function App() {
                     The next runtime step is ready for your own game installation.
                     Select your GTA San Andreas folder to prepare the browser file layer.
                   </p>
-                  <button className="load-game" onClick={loadGameFolder}>
-                    SELECT GAME FOLDER
-                  </button>
+                  <div className="action-row">
+                    <button className="load-game" onClick={loadGameFolder}>
+                      SELECT GAME FOLDER
+                    </button>
+                    <button
+                      className="vice-city"
+                      onClick={() => {
+                        window.location.href = "https://joncodeofficial.github.io/gta-vice-city-wasm/";
+                      }}
+                    >
+                      TEST VICE CITY
+                    </button>
+                  </div>
                   {error && <div className="error">{error}</div>}
                 </>
               ) : (
